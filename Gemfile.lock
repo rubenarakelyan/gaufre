@@ -149,6 +149,7 @@ GEM
     rake (13.0.6)
     regexp_parser (2.7.0)
     rexml (3.2.5)
+    ruby-net-text (0.0.7)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -190,6 +191,7 @@ DEPENDENCIES
   debug
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  ruby-net-text (~> 0.0.7)
   selenium-webdriver
   sprockets-rails
   tzinfo-data
