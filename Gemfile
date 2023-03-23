@@ -18,6 +18,9 @@ gem "ruby-net-text", "~> 0.0.7"
 # Add support for view decorators
 gem "draper", "~> 4.0.2"
 
+# Use marcel to work out file types
+gem "marcel", "~> 1.0.2"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 

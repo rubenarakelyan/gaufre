@@ -229,6 +229,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   draper (~> 4.0.2)
+  marcel (~> 1.0.2)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rubocop
