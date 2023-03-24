@@ -38,6 +38,7 @@ group :development do
 
   # Use rubocop to enforce good coding practices
   gem "rubocop"
+  gem "rubocop-rails"
 end
 
 group :test do

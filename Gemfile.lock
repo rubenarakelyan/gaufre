@@ -184,6 +184,10 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.27.0)
       parser (>= 3.2.1.0)
+    rubocop-rails (2.18.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
     ruby-net-text (0.0.7)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
@@ -233,6 +237,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rubocop
+  rubocop-rails
   ruby-net-text (~> 0.0.7)
   selenium-webdriver
   sprockets-rails
