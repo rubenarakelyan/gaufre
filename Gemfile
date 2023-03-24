@@ -30,6 +30,9 @@ group :development, :test do
 
   # Use .env file
   gem "dotenv-rails"
+
+  # Use rspec for testing
+  gem "rspec-rails"
 end
 
 group :development do
@@ -39,6 +42,7 @@ group :development do
   # Use rubocop to enforce good coding practices
   gem "rubocop"
   gem "rubocop-rails"
+  gem "rubocop-rspec"
 end
 
 group :test do
