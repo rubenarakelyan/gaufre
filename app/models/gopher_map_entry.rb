@@ -13,6 +13,10 @@ class GopherMapEntry
     filetype == "i"
   end
 
+  def search?
+    filetype == "7"
+  end
+
   def external_html_link?
     filetype == "h"
   end
@@ -32,6 +36,8 @@ class GopherMapEntry
       selector.delete_prefix("URL:")
     elsif external_gopher_link?
       "/_/external_gopher_link?uri=#{host}:#{port}/#{filetype}#{selector}"
+    elsif search?
+      "/_/search?uri=/1#{selector}"
     else
       "/#{filetype}#{selector}"
     end

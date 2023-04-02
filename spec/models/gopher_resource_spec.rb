@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe GopherResource do
   describe ".object" do
-    let(:subject) { GopherResource.new(filetype:, selector:, response:).object }
+    subject(:gopher_resource) { described_class.new(filetype:, selector:, response:).object }
 
-    context "if the resource is a Gopher Map" do
+    context "when the resource is a Gopher Map" do
       let(:filetype) { "1" }
       let(:selector) { "files" }
       let(:response) do
@@ -12,11 +12,11 @@ RSpec.describe GopherResource do
       end
 
       it "returns a GopherMap object" do
-        expect(subject).to be_a GopherMap
+        expect(gopher_resource).to be_a GopherMap
       end
     end
 
-    context "if the resource is not a Gopher Map" do
+    context "when the resource is not a Gopher Map" do
       let(:filetype) { "0" }
       let(:selector) { "files/test.txt" }
       let(:response) do
@@ -24,7 +24,7 @@ RSpec.describe GopherResource do
       end
 
       it "returns a GopherFile object" do
-        expect(subject).to be_a GopherFile
+        expect(gopher_resource).to be_a GopherFile
       end
     end
   end

@@ -1,6 +1,7 @@
 class GopherMapEntryDecorator < ApplicationDecorator
   delegate_all
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
   def icon
     return nil if filetype == "i" # info entry
 
@@ -15,6 +16,8 @@ class GopherMapEntryDecorator < ApplicationDecorator
       "compressed.png"
     when "6"
       "uuencoded.png"
+    when "7"
+      "index.png"
     when "9"
       "binary.png"
     when ":", "I", "g", "p"
@@ -33,4 +36,5 @@ class GopherMapEntryDecorator < ApplicationDecorator
       "unknown.png"
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 end

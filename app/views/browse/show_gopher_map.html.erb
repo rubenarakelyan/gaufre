@@ -1,7 +1,7 @@
 <% gopher_map.each do |entry| %>
   <% if entry.info? %>
     <%= entry.name %>
-  <% elsif entry.file? || entry.external_html_link? || entry.external_gopher_link? %>
+  <% else %>
     <img src="/images/icons/<%= entry.icon %>" width="20" height="22" alt=""> <a href="<%= entry.link %>"><%= entry.name %></a>
   <% end %>
 <% end %>

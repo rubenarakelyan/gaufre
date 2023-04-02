@@ -32,9 +32,10 @@ class GopherFile
     selector.split("/").last
   end
 
+  # rubocop:disable Metrics/MethodLength
   def mime_type_for(filetype:, content:)
     case filetype
-    when "0"
+    when "0", "1"
       "text/plain"
     when "P"
       "application/pdf"
@@ -52,4 +53,5 @@ class GopherFile
       "application/octet-stream"
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

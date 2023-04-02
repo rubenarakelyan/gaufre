@@ -1,14 +1,17 @@
 class BrowseController < ApplicationController
   before_action :warn_on_external_uri
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def show
-    response = GopherGetterService.call(path: params[:gopher_path])
+    response = GopherGetterService.call(path: params[:gopher_path], query_string: request.query_string)
     gopher_resource = response[:gopher_resource]
     obj = gopher_resource.object
     @uri = response[:uri]
 
     if gopher_resource.gopher_map?
-      render "show_gopher_map", locals: { gopher_map: GopherMapEntryDecorator.decorate_collection(obj.to_a).decorated_collection }
+      render "show_gopher_map", locals: {
+        gopher_map: GopherMapEntryDecorator.decorate_collection(obj.to_a).decorated_collection
+      }
     elsif obj.text?
       render "show_text", formats: :html, locals: { content: obj.content }
     elsif obj.image? && ENV.fetch("INLINE_IMAGES", "false") == "true"
@@ -17,6 +20,7 @@ class BrowseController < ApplicationController
       send_data(obj.content, filename: obj.filename, type: obj.mime_type)
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
 
@@ -24,9 +28,10 @@ class BrowseController < ApplicationController
     external_path = UriService.external_path?(path: params[:gopher_path])
 
     if external_path.nil?
-      raise ActionController::RoutingError.new("Not Found") if external_path.nil?
+      raise ActionController::RoutingError, "Not Found"
     elsif external_path
-      redirect_to "/_/external_gopher_link?uri=#{ENV.fetch('GOPHER_HOST')}:#{ENV.fetch('GOPHER_PORT', '70')}/#{params[:gopher_path]}"
+      redirect_to "/_/external_gopher_link?uri=" \
+                  "#{ENV.fetch('GOPHER_HOST')}:#{ENV.fetch('GOPHER_PORT', '70')}/#{params[:gopher_path]}"
     end
   end
 end

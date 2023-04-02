@@ -3,8 +3,8 @@ require "rails_helper"
 RSpec.describe GopherMapEntry do
   describe ".link" do
     context "when an entry is an information entry" do
-      let(:subject) do
-        GopherMapEntry.new(
+      subject(:gopher_map_entry) do
+        described_class.new(
           filetype: "i",
           name: "Here's some information",
           selector: "",
@@ -14,13 +14,13 @@ RSpec.describe GopherMapEntry do
       end
 
       it "returns an empty link" do
-        expect(subject).to eq("")
+        expect(gopher_map_entry).to eq("")
       end
     end
 
-    context "when an entry is an information entry" do
-      let(:subject) do
-        GopherMapEntry.new(
+    context "when an entry is an HTTP URL" do
+      subject(:gopher_map_entry) do
+        described_class.new(
           filetype: "h",
           name: "This is an external link",
           selector: "URL:http://www.example.com",
@@ -30,13 +30,13 @@ RSpec.describe GopherMapEntry do
       end
 
       it "returns a URL" do
-        expect(subject).to eq("http://www.example.com")
+        expect(gopher_map_entry).to eq("http://www.example.com")
       end
     end
 
     context "when an entry is an external Gopher hole" do
-      let(:subject) do
-        GopherMapEntry.new(
+      subject(:gopher_map_entry) do
+        described_class.new(
           filetype: "1",
           name: "This is an external Gopher hole",
           selector: "/this/is/a/test",
@@ -46,13 +46,13 @@ RSpec.describe GopherMapEntry do
       end
 
       it "returns a link to the external link information page" do
-        expect(subject).to eq("/_/external_gopher_link?uri=example.com:70/1/this/is/a/test")
+        expect(gopher_map_entry).to eq("/_/external_gopher_link?uri=example.com:70/1/this/is/a/test")
       end
     end
 
     context "when an entry is an internal file" do
-      let(:subject) do
-        GopherMapEntry.new(
+      subject(:gopher_map_entry) do
+        described_class.new(
           filetype: "0",
           name: "This is a test file",
           selector: "/this/is/a/test.txt",
@@ -62,7 +62,7 @@ RSpec.describe GopherMapEntry do
       end
 
       it "returns a link to the file" do
-        expect(subject).to eq("/0/this/is/a/test.txt")
+        expect(gopher_map_entry).to eq("/0/this/is/a/test.txt")
       end
     end
   end

@@ -6,6 +6,8 @@ class GopherMap
   def to_a
     rows.map do |line|
       filetype = line.slice!(0)
+      next if filetype == "."
+
       line = line.split("\t")
       GopherMapEntry.new(filetype:, name: line[0], selector: line[1], host: line[2], port: line[3])
     end.compact

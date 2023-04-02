@@ -9,18 +9,20 @@ RSpec.describe UriService do
     end
 
     context "when the URI is internal to the Gopher hole" do
-      let(:subject) { UriService.external_uri?(host: "fossil.wackomenace.co.uk", port: "70", selector: "/0/test.txt") }
+      subject(:uri) do
+        described_class.external_uri?(host: "fossil.wackomenace.co.uk", port: "70", selector: "/0/test.txt")
+      end
 
       it "returns false" do
-        expect(subject).to be false
+        expect(uri).to be false
       end
     end
 
     context "when the URI is on an external Gopher hole" do
-      let(:subject) { UriService.external_uri?(host: "example.com", port: "70", selector: "/0/test.txt") }
+      subject(:uri) { described_class.external_uri?(host: "example.com", port: "70", selector: "/0/test.txt") }
 
       it "returns true" do
-        expect(subject).to be true
+        expect(uri).to be true
       end
     end
   end
@@ -33,18 +35,18 @@ RSpec.describe UriService do
     end
 
     context "when the path is within the defined Gopher path root" do
-      let(:subject) { UriService.external_path?(path: "0/users/example/test.txt") }
+      subject(:uri) { described_class.external_path?(path: "0/users/example/test.txt") }
 
       it "returns false" do
-        expect(subject).to be false
+        expect(uri).to be false
       end
     end
 
     context "when the path is outside the defined Gopher path root" do
-      let(:subject) { UriService.external_path?(path: "0/users/example2/test.txt") }
+      subject(:uri) { described_class.external_path?(path: "0/users/example2/test.txt") }
 
       it "returns true" do
-        expect(subject).to be true
+        expect(uri).to be true
       end
     end
   end

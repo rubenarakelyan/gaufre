@@ -1,10 +1,11 @@
-require "net/gopher"
+require "uri/gopher"
 
 class GopherGetterService
-  def initialize(path:)
+  def initialize(path:, query_string: "")
     @filetype, @selector = path.split("/", 2)
-    @uri = uri_for(filetype:, selector:)
-    @path = path_for(filetype:, selector:)
+    @query_string = query_string
+    @uri = uri_for(filetype:, selector:, query_string:)
+    @path = path_for(filetype:, selector:, query_string:)
   end
 
   def call
@@ -25,13 +26,15 @@ class GopherGetterService
 
   private
 
-  attr_reader :uri, :path, :filetype, :selector
+  attr_reader :uri, :path, :filetype, :selector, :query_string
 
-  def uri_for(filetype:, selector:)
-    URI("gopher://#{ENV.fetch('GOPHER_HOST')}:#{ENV.fetch('GOPHER_PORT', 70)}#{path_for(filetype:, selector:)}")
+  def uri_for(filetype:, selector:, query_string:)
+    URI::Gopher.new("gopher", nil, ENV.fetch("GOPHER_HOST"), ENV.fetch("GOPHER_PORT", "70"), nil,
+                    path_for(filetype:, selector:, query_string:), nil, nil, nil)
   end
 
-  def path_for(filetype:, selector:)
-    "/#{filetype}/#{selector}"
+  def path_for(filetype:, selector:, query_string:)
+    query_string = "%09#{query_string}" if query_string.present?
+    "/#{filetype}/#{selector}#{query_string}"
   end
 end
