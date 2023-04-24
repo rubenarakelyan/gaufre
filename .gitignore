@@ -27,8 +27,7 @@
 # Ignore local .env files
 .env
 
-# Ignore customised Dockerfile and docker-compose.yml
-Dockerfile
+# Ignore customised docker-compose.yml
 docker-compose.yml
 
 # Ignore rspec examples
