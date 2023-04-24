@@ -17,7 +17,7 @@ If you're looking for an open Gopher proxy, try [Gopher Proxy](https://gopherpro
 If you want to host the same content simultaneously over HTTP and Gopher using
 a single app, try [PyGopherd](https://github.com/michael-lazar/pygopherd).
 
-## Quick start
+## Quick start (local development)
 
 Ensure Ruby 3.2.1 is installed. Then, from the app directory, run:
 
@@ -27,8 +27,13 @@ bundle install
 bundle exec rails s
 ```
 
---------------------------------------------------------------------------------
 Remember to edit your new `.env` file to set the hostname of your Gopher hole.
+
+## Running in production
+
+The recommended method of running in production is using Docker. `Dockerfile`
+and `docker-compose.yml` files are provided as samples that can be customised
+to your preferred configuration.
 
 You may want to customise the puma configuration depending on traffic levels.
 This is left as an exercise for the reader.
