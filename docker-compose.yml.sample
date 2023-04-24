@@ -7,8 +7,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - "GOPHER_HOST=example.com"
-      - "GOPHER_PORT=70"
-      - "GOPHER_PATH=users/username/"
-      - "INLINE_IMAGES=false"
-      - "TITLE=My proxy service"
+      - GOPHER_HOST: example.com
+      - GOPHER_PORT: 70
+      - GOPHER_PATH: users/username/
+      - INLINE_IMAGES: false
+      - TITLE: My proxy service
